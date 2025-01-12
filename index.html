@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Sunshine Map</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Search Column -->
+            <div class="col-md-3 p-3">
+                <div class="search-container">
+                    <h2 class="h4 mb-3">Search Location</h2>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Enter location...">
+                        <button class="btn btn-primary" type="button" id="searchButton">Search</button>
+                    </div>
+                    
+                    <!-- Add toggle buttons -->
+                    <div class="btn-group w-100 mb-3" role="group" aria-label="Data visualization toggles">
+                        <input type="checkbox" class="btn-check" id="sunshineToggle" autocomplete="off">
+                        <label class="btn btn-outline-warning" for="sunshineToggle">
+                            <i class="fas fa-sun"></i> Sunshine
+                        </label>
+
+                        <input type="checkbox" class="btn-check" id="rainToggle" autocomplete="off">
+                        <label class="btn btn-outline-info" for="rainToggle">
+                            <i class="fas fa-cloud-rain"></i> Rain
+                        </label>
+                    </div>
+                    
+                    <!-- Add legend -->
+                    <div class="legend-container mt-3">
+                        <h6>Legend</h6>
+                        <div id="sunshineScale" class="scale-container mb-2" style="display: none;">
+                            <div class="d-flex justify-content-between">
+                                <span>Less Sun</span>
+                                <span>More Sun</span>
+                            </div>
+                            <div class="gradient-bar sunshine-gradient"></div>
+                        </div>
+                        <div id="rainScale" class="scale-container mb-2" style="display: none;">
+                            <div class="d-flex justify-content-between">
+                                <span>Less Rain</span>
+                                <span>More Rain</span>
+                            </div>
+                            <div class="gradient-bar rain-gradient"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add search suggestions -->
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+            </div>
+            
+            <!-- Map Column -->
+            <div class="col-md-9 p-0">
+                <div id="map"></div>
+                <div id="weatherInfo" class="weather-info-card" style="display: none;">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0" id="cityName"></h5>
+                            <button type="button" class="btn-close" aria-label="Close" onclick="hideWeatherInfo()"></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="weather-stat">
+                                        <i class="fas fa-sun text-warning"></i>
+                                        <h6>Sunshine</h6>
+                                        <p id="sunshineStat"></p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="weather-stat">
+                                        <i class="fas fa-cloud-rain text-info"></i>
+                                        <h6>Rainfall</h6>
+                                        <p id="rainStat"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/cityData.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html> 
